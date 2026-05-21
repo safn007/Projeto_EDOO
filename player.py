@@ -222,4 +222,4 @@ class Player(pygame.sprite.Sprite):
                 self.die()
                 
     def die(self):
-        self.kill()
+        
