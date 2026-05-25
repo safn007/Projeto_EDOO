@@ -4,9 +4,16 @@
 #include "player.h"
 #include <cstdlib>
 
-// precisa de varias classes
-void gerar_itens(Coletavel c, Item i, int quantidade, int y=600);
+class Game {
+    private:
+        void gerar_itens(Coletavel c, int x, int y);
+    public:
+        static std::vector<Coletavel> Item;
+        // precisa de varias classes
+        
 
-void carregar_nivel(Player p, bullet_group, tiros_inimigos, inimigos, coletaveis, subboss);
+        void carregar_nivel(Player player, bullet_group, tiros_inimigos, inimigos, coletaveis, subboss);
+};
+
 
 #endif
