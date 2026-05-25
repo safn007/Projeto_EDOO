@@ -1,6 +1,20 @@
 #include "player.h"
 
+// funções auxiliares
+void Player::set_inv_false() {
+    this->keys = {
+        {'W', false},
+        {'A', false},
+        {'S', false},
+        {'D', false},
+        {'U', false}
+    };
+}
+
 void Player::movimentacao() {
+    // reiniciar velocidades e bool do pulo
+    this->vel_x = 0; this->vel_y = 0; pulou = false;
+
     bool mov_esq(false), mov_dir(false);
     if (!this->atirando) {
         if (keys['A']) mov_esq = true;
@@ -14,12 +28,6 @@ void Player::movimentacao() {
     else if (!mov_esq && mov_dir) { 
         this->vel_x = velocidade; 
     }
-
-    if (!this->no_ar) {
-        inercia_x = 1.5;
-        pulo_duplo = false;
-    }
-    else inercia_x = 0.7;
 
     if (this->vel_x < 0) {
         this->vel_x += inercia_x;
@@ -35,20 +43,24 @@ void Player::movimentacao() {
     else this->pulo_duplo_timer = 0;
 
     if(!this->atirando) {
-        if ((keys['U'] || keys['W']) && !this->tecla_pulo && this->no_ar && this->pulo_duplo && this->pulo_duplo_timer >= 12) {
+        if ((keys['U'] || keys['W']) && this->pulo_duplo && this->pulo_duplo_timer >= 12) {
             this->pulo_duplo = false;
-            this->vel_y = -20;
+            this->vel_y = 1;
+            this->pulou = true;
         }
 
-        if ((keys['U'] || keys['W']) && !this->tecla_pulo && !this->no_ar) {
+        if (keys['U'] || keys['W']) {
             this->pulo_duplo = (this->inventario.count("pipa") > 0) ? true : false;
-            this->vel_y = -25;
+            this->vel_y = 1;
+            this->pulou = true;
         }
     }
 
-    this->tecla_pulo = (keys['U'] || keys['W']);
+    if (this->pos_y>= 1 && !this->pulou) this->vel_y -= gravidade;
 
-    if (this->vel_y <= 25) this->vel_y += gravidade;
+    // atualizar posição
+    this->pos_x += vel_x;
+    this->pos_y += vel_y;
 }
 
 void Player::shoot() {
@@ -56,14 +68,15 @@ void Player::shoot() {
 
 }
 
-void Player::update() {
-    std::unordered_map<char, bool> keys = {
-        {'W', false},
-        {'A', false},
-        {'S', false},
-        {'D', false},
-        {'U', false}
-    };
+void Player::update(char key) {
+    // reconfigura todas as keys para falso
+    set_inv_false();
+
+    // ativa key se alguma for fornecida
+    if (key != '0') {
+        keys[key] = true;
+    }
+    std::cout << "Posição(x, y): (" << this->pos_x << "," << this->pos_y << ")" << std::endl;
 
     if (invencib_timer > 0) invencib_timer -= 1;
 
@@ -82,7 +95,6 @@ void Player::update() {
     }
 
     this->movimentacao();
-
 }
 
 void Player::take_damage() {
@@ -93,9 +105,11 @@ void Player::take_damage() {
             this->die();
         }
     }
+    std::cout << "Dano Recebido! Vida restante: " << this->vida << "/8." << std::endl;
 
 }
 
 void Player::die() {
+    std::cout << "O Player morreu!" << std::endl; 
     this->~Player();
 }
