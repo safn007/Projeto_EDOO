@@ -15,7 +15,8 @@ class Game {
         static std::vector<std::vector<int>> mapa;
         static std::vector<Coletavel> Item;
         
-        Game(Player* player) : camada0({0, 0, 1, 0, 0, 0, 0, 0, 0, 0}), camada1({0, 0, 0, 0, 0, 0, 0, 0, 0, 0}) {
+        Game(Player* player) : camada0({0, 0, 0, 0, 0, 0, 0, 0, 0, 0}), camada1({0, 0, 0, 0, 0, 0, 0, 0, 0, 0}) {
+            // inimigo 0, 5
             mapa = {camada0, camada1};
             this->player = *player;
         }

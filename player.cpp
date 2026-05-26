@@ -5,7 +5,6 @@ void Player::set_inv_false() {
     this->keys = {
         {'W', false},
         {'A', false},
-        {'S', false},
         {'D', false},
         {'U', false}
     };
@@ -22,21 +21,11 @@ void Player::movimentacao() {
     }
 
     if (mov_esq && !mov_dir) { 
-        this->vel_x = -velocidade; 
+        this->vel_x = velocidade * (-1); 
     }
 
     else if (!mov_esq && mov_dir) { 
         this->vel_x = velocidade; 
-    }
-
-    if (this->vel_x < 0) {
-        this->vel_x += inercia_x;
-        if (this->vel_x > 0) this->vel_x = 0;
-    }
-
-    else if (this->vel_x < 0) {
-        this->vel_x -= inercia_x;
-        if (this->vel_x < 0) this->vel_x = 0;
     }
 
     if (this->pulo_duplo) this->pulo_duplo_timer += 1;
@@ -59,6 +48,7 @@ void Player::movimentacao() {
     if (this->pos_y>= 1 && !this->pulou) this->vel_y -= gravidade;
 
     // atualizar posição
+    std::cout << "velocidade: " << this->vel_x;
     this->pos_x += vel_x;
     this->pos_y += vel_y;
 }
@@ -98,13 +88,9 @@ void Player::update(char key) {
 }
 
 void Player::take_damage() {
-    if (invencib_timer <= 0) {
-        this->vida -= 1;
-        invencib_timer = 60;
-        if (this->vida <= 0) {
-            this->die();
-        }
-    }
+    this->vida -= 1;
+    invencib_timer = 60;
+    if (this->vida <= 0) { this->die(); }
     std::cout << "Dano Recebido! Vida restante: " << this->vida << "/8." << std::endl;
 
 }
