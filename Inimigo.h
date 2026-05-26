@@ -26,14 +26,7 @@ private:
     int getVida();
     bool getVoador();
     //métodos
-    void take_damage(int amount);
-    void apply_gravity();
+    void take_damage();
     
-    virtual void handle_collisions(); //parâmetro é um endereço de ponteiro do tipo Objetos_Solidos, que podem ser chao, plataformas ou parede
-    
-    virtual void update(int player_x, int player_y); //roda handle_collisions --> passar o vector<ObjetosSOlidos*> como parâmetro
-
-
-
 };
 #endif

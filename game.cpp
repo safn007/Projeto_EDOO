@@ -12,8 +12,25 @@ void Game::carregar_nivel() {
 }
 
 void Game::acao(char c) {
-    player.update(c);
-    if (mapa[player.get_y()][player.get_x()] != 0){
-        player.take_damage();
+    if (c == 'R' || c == 'L') {
+        player.shoot(c);
+        if (c == 'R') {
+            for (int i = player.get_x(); i < 10; ++i) {
+                if (mapa[player.get_y()][i] != 0) {
+                    Inimigo i1(0, 0, false);
+                    i1.take_damage();
+                    mapa[player.get_y()][i] = 0;
+                    break;
+                }
+            }
+        }
+        
     }
+    else {
+        player.update(c);
+        if (mapa[player.get_y()][player.get_x()] != 0){
+            player.take_damage();
+        }
+    }
+    
 }

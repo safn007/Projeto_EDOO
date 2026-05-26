@@ -12,8 +12,8 @@ class Coletavel {
         int get_x() {return this->pos_x;}
         int get_y() {return this->pos_y;}
 
-        void set_x(int x) {this->pos_x = x;}
-        void set_y(int y) {this->pos_y = y;}
+        void set_x(const int x) {this->pos_x = x;}
+        void set_y(const int y) {this->pos_y = y;}
 };
 
 // como no codigo original as classes filhas só tratam da animação, nao ha nada a adicionar nelas

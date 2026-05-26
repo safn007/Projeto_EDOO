@@ -22,10 +22,12 @@ void Player::movimentacao() {
 
     if (mov_esq && !mov_dir) { 
         this->vel_x = velocidade * (-1); 
+        std::cout << "Player andou para a esquerda." << std:: endl;
     }
 
     else if (!mov_esq && mov_dir) { 
         this->vel_x = velocidade; 
+        std::cout << "Player andou para a direita." << std:: endl;
     }
 
     if (this->pulo_duplo) this->pulo_duplo_timer += 1;
@@ -36,25 +38,33 @@ void Player::movimentacao() {
             this->pulo_duplo = false;
             this->vel_y = 1;
             this->pulou = true;
+            std::cout << "Player pulou." << std:: endl;
         }
 
         if (keys['U'] || keys['W']) {
             this->pulo_duplo = (this->inventario.count("pipa") > 0) ? true : false;
             this->vel_y = 1;
             this->pulou = true;
+            std::cout << "Player pulou." << std:: endl;
         }
     }
 
     if (this->pos_y>= 1 && !this->pulou) this->vel_y -= gravidade;
 
     // atualizar posição
-    this->pos_x += vel_x;
-    this->pos_y += vel_y;
+    try {
+        this->pos_x += vel_x;
+        this->pos_y += vel_y;
+        if (pos_x < 0 || pos_x > 10) {throw ForaDoMapa("Saiu do Mapa!");} 
+    }
+    catch(ForaDoMapa& e)
+    {}
 }
 
-void Player::shoot() {
-    // precisa de bullet_group b, objetos_solidos_pedra o, coletaveis c, Pedra p    
-
+void Player::shoot(char dir) {
+    Bullet bullet(this->pos_x, this->pos_y, dir); 
+    tiro_cooldown = 5;
+    std::cout << "TIRO DISPARADO!" << std::endl;
 }
 
 void Player::update(char key) {
@@ -67,8 +77,6 @@ void Player::update(char key) {
     }
     std::cout << "Posição(x, y): (" << this->pos_x << "," << this->pos_y << ")" << std::endl;
 
-    if (invencib_timer > 0) invencib_timer -= 1;
-
     if (tiro_cooldown > 0) {
          tiro_cooldown -= 1; 
     }
@@ -76,19 +84,13 @@ void Player::update(char key) {
          atirando = false; 
     }
 
-    if (atirando && tiro_cooldown == 30) {
-        // precisa da classe Bullet
-        // Bullet bullet(spawn_x, self.hitbox.centery - 25, direction, objetos, gp_coletáveis, pedra);
-        // static vector<Bullet> Balas;
-        // Balas.push_back(new_bullet)
-    }
+    if (tiro_cooldown > 0) {--tiro_cooldown; }
 
     this->movimentacao();
 }
 
 void Player::take_damage() {
     this->vida -= 1;
-    invencib_timer = 60;
     if (this->vida <= 0) { this->die(); }
     std::cout << "Dano Recebido! Vida restante: " << this->vida << "/8." << std::endl;
 
