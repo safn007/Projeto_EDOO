@@ -2,7 +2,7 @@
 using namespace std;
 
 Bullet::Bullet(int startX, int startY, int dir,
-    std::vector<SolidObject*>& solidos, std::vector<Collectible*>& col)
+    std::vector<SolidObject*>& solidos, std::vector<Coletavel*>& col)
     : GRAVITY(0.2f), objetos_solidos(solidos), coletaveis(col){
 
          //valores genéricos
@@ -91,7 +91,7 @@ void Bullet::update(){
 
         this->setBottom(plataforma_colidida_v->getTop());
 
-        Collectible* nova_pedra = new Collectible();
+        Coletavel* nova_pedra = new Coletavel();
         this->coletaveis.push_back(nova_pedra);
 
         this->kill();

@@ -1,10 +1,7 @@
 #ifndef BULLET_H
 #define BULLET_H
 #include<vector>
-
-//classes que serão criadas depois
-//to colocando só pro codigo funcionar
-//depois remover essas classes e colocar tipo "#include "collectible.h"#
+#include"itens.h"
 
 class SolidObject {
     public:
@@ -13,10 +10,6 @@ class SolidObject {
         int getRight() const { return 0; }
         int getTop() const { return 0; }
         int getBottom() const { return 0; }
-};
-
-class Collectible{
-
 };
 
 //------------------------
@@ -35,12 +28,12 @@ class Bullet {
         bool alive;
 
         std::vector<SolidObject*>& objetos_solidos;
-        std::vector<Collectible*>& coletaveis;
+        std::vector<Coletavel*>& coletaveis;
 
     public:
 
         Bullet(int startX, int startY, int dir, 
-            std::vector<SolidObject*>& solidos, std::vector<Collectible*>& col);
+            std::vector<SolidObject*>& solidos, std::vector<Coletavel*>& col);
 
         //------ MÉTODOS ------
 

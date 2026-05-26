@@ -1,7 +1,7 @@
 #include "player.h"
 #include "game.h"
-#include "tucano.h"
-#include "onca.h"
+#include "Tucano.h"
+#include "Onca.h"
 using namespace std;
 
 int main() {
