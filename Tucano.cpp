@@ -1,5 +1,4 @@
 #include "Tucano.h"
-#include "Projetil.h
 
 #include <iostream>
 using namespace std;
@@ -25,7 +24,7 @@ void Tucano::setVelocidade(float nova_vel) { velocidade = nova_vel; }
 int Tucano::getDirection() { return direction; }
 void Tucano::setDirection(int dir) { direction = dir; }
 
-void Tucano::update(float player_x, float player_y) {
+void Tucano::update(int player_x, int player_y) {
     cooldown++;
     if (cooldown > max_cooldown) {
         cooldown = 0;

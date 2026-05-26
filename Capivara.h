@@ -3,8 +3,7 @@
 
 #include "Inimigo.h"
 #include <vector>
-
-class Projetil;
+#include "Projetil.h"
 
 class Capivara : public Inimigo {
 private:
@@ -18,7 +17,7 @@ public:
     
     ~Capivara() override;
 
-    void update(float player_x, float player_y) override;
+    void update(int player_x, int player_y) override;
 };
 
 #endif

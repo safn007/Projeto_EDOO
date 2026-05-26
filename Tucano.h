@@ -3,8 +3,7 @@
 
 #include "Inimigo.h"
 #include <vector>
-
-class Projetil; 
+#include "Projetil.h"
 
 class Tucano : public Inimigo {
 private:
@@ -26,7 +25,7 @@ public:
     int getDirection();
     void setDirection(int dir);
 
-    void update(float player_x, float player_y) override;
+    void update(int player_x, int player_y) override;
 };
 
 #endif

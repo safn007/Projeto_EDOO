@@ -17,7 +17,7 @@ Capivara::~Capivara() {
     cout << "Objeto do tipo Capivara DESTRUÍDO" << endl;
 }
 
-void Capivara::update(float player_x, float player_y) {
+void Capivara::update(int player_x, int player_y) {
     float distancia = player_x - getX();
 
     if (std::abs(distancia) < 1000.0f) {
