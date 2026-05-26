@@ -48,7 +48,6 @@ void Player::movimentacao() {
     if (this->pos_y>= 1 && !this->pulou) this->vel_y -= gravidade;
 
     // atualizar posição
-    std::cout << "velocidade: " << this->vel_x;
     this->pos_x += vel_x;
     this->pos_y += vel_y;
 }

@@ -6,23 +6,23 @@ using namespace std;
 
 class Inimigo{
 private:
-    float posicao_x, posicao_y;
+    int posicao_x, posicao_y;
     int vida;
     bool voador;
-    float vel_y;
+    int vel_y;
     bool no_chao;
 
     public:
-    Inimigo(float pos_x, float pos_y, bool voador, int vida = 1);
+    Inimigo(int pos_x, int pos_y, bool voador, int vida = 1);
     virtual ~Inimigo();
     //setters
-    void setPX(float novo_pos_x);
-    void setPY(float novo_pos_y);
+    void setPX(int novo_pos_x);
+    void setPY(int novo_pos_y);
     void setVida(int novo_vida);
     void setVoador(bool voa);
     //getters
-    float getX();
-    float getY();
+    int getX();
+    int getY();
     int getVida();
     bool getVoador();
     //métodos
@@ -31,7 +31,7 @@ private:
     
     virtual void handle_collisions(); //parâmetro é um endereço de ponteiro do tipo Objetos_Solidos, que podem ser chao, plataformas ou parede
     
-    virtual void update(float player_x, float player_y); //roda handle_collisions --> passar o vector<ObjetosSOlidos*> como parâmetro
+    virtual void update(int player_x, int player_y); //roda handle_collisions --> passar o vector<ObjetosSOlidos*> como parâmetro
 
 
 

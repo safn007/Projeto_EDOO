@@ -1,20 +1,21 @@
 #include "player.h"
 #include "game.h"
+#include "tucano.h"
+#include "onca.h"
 using namespace std;
 
 int main() {
 
     // inicializando objetos
     Player player;
-    Game game(&player); 
+    Tucano i1(1, 0, false); Onca i2(5, 0, false);
+    vector<Inimigo*> inimigos = {&i1, &i2};
+    Game game(&player, inimigos); 
 
     // ações
-    cout << "Ação 1" << endl;
     game.acao('D');
     game.acao('W');
-    cout << "Ação 2" << endl;
     game.acao('D');
-    cout << "Ação 3" << endl;
     game.acao('D');
     game.acao('D');
     game.acao('W');

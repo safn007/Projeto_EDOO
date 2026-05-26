@@ -7,14 +7,14 @@ using namespace std;
 
 class Onca : public Inimigo{
 private:
-    float velocidade;
+    int velocidade;
     int direcao;
     bool atacando;
     int ataque_timer;
     int ataque_cooldown;
 public:
-    Onca(float pos_x, float pos_y, int vida, bool voador, float vel);
-    void update(float player_x, float player_y) override;
+    Onca(int pos_x, int pos_y, int vida, bool voador, int vel);
+    void update(int player_x, int player_y) override;
 };
 
 

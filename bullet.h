@@ -9,10 +9,10 @@
 class SolidObject {
     public:
         //métodos só pra compilar de boas
-        float getLeft() const { return 0; }
-        float getRight() const { return 0; }
-        float getTop() const { return 0; }
-        float getBottom() const { return 0; }
+        int getLeft() const { return 0; }
+        int getRight() const { return 0; }
+        int getTop() const { return 0; }
+        int getBottom() const { return 0; }
 };
 
 class Collectible{
@@ -28,8 +28,8 @@ class Bullet {
     private:
 
         //x,y,width,height vão simular as propriedades do pygame    
-        float x, y, width, height, speed_x, vel_y;
-        const float GRAVITY;
+        int x, y, width, height, speed_x, vel_y;
+        const int GRAVITY;
         int direction;
 
         bool alive;
@@ -39,7 +39,7 @@ class Bullet {
 
     public:
 
-        Bullet(float startX, float startY, int dir, 
+        Bullet(int startX, int startY, int dir, 
             std::vector<SolidObject*>& solidos, std::vector<Collectible*>& col);
 
         //------ MÉTODOS ------
@@ -51,28 +51,28 @@ class Bullet {
 
         //---- SIMULANDO O PYGAME -----
 
-        float getLeft() const {
+        int getLeft() const {
             return x;
         }
-        void setLeft(float val){
+        void setLeft(int val){
             x = val;
         }
-        float getRight() const {
+        int getRight() const {
             return x+width;
         }
-        void setRight(float val){
+        void setRight(int val){
             x = val - width;
         }
-        float getTop() const {
+        int getTop() const {
             return y;
         }
-        float getBottom() const {
+        int getBottom() const {
             return y+height;
         }
-        void setBottom(float val) {
+        void setBottom(int val) {
             y = val - height;
         }
-        float getCenterX() const{
+        int getCenterX() const{
             return x + (width/2.0f);
         }
 

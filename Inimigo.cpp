@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-Inimigo::Inimigo(float pos_x, float pos_y, bool voador, int vida){
+Inimigo::Inimigo(int pos_x, int pos_y, bool voador, int vida){
     this->posicao_x = pos_x;
     this->posicao_y = pos_y;
     this->vida = vida;
@@ -10,9 +10,7 @@ Inimigo::Inimigo(float pos_x, float pos_y, bool voador, int vida){
     cout<< "Objeto do tipo Inimigo CRIADO!" << endl;
 };
 
-Inimigo::~Inimigo(){
-    cout << "Obejto do tipo Inimigo DESTRUÍDO"<< endl;
-};
+Inimigo::~Inimigo(){};
 
 //setters
 void Inimigo::setPX(float novo_pos_x){posicao_x = novo_pos_x;}
@@ -49,4 +47,5 @@ void Inimigo::handle_collisions(){
 
 }
 
+void Inimigo::update(int player_x, int player_y) {}
 

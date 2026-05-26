@@ -15,9 +15,15 @@ class Game {
         static std::vector<std::vector<int>> mapa;
         static std::vector<Coletavel> Item;
         
-        Game(Player* player) : camada0({0, 0, 0, 0, 0, 0, 0, 0, 0, 0}), camada1({0, 0, 0, 0, 0, 0, 0, 0, 0, 0}) {
-            // inimigo 0, 5
+        Game(Player* player, std::vector<Inimigo*> inimigos) : camada0({0, 0, 0, 0, 0, 0, 0, 0, 0, 0}), camada1({0, 0, 0, 0, 0, 0, 0, 0, 0, 0}) {
             mapa = {camada0, camada1};
+            // adicionar inimigos
+            for (auto& inimigo: inimigos) {
+                int x = inimigo->getX();
+                int y = inimigo->getY();
+                mapa[y][x] = 1; 
+            }
+            
             this->player = *player;
         }
 

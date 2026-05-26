@@ -1,7 +1,7 @@
 #include"bullet.h"
 using namespace std;
 
-Bullet::Bullet(float startX, float startY, int dir,
+Bullet::Bullet(int startX, int startY, int dir,
     std::vector<SolidObject*>& solidos, std::vector<Collectible*>& col)
     : GRAVITY(0.2f), objetos_solidos(solidos), coletaveis(col){
 
