@@ -1,49 +1,36 @@
-#ifndef PROJETIL_H
-#define PROJETIL_H
+#ifndef _PROJETIL_H_
+#define _PROJETIL_H_
 
-class Projetil{
+class Projetil {
+private:
+    float posicao_x;
+    float posicao_y;
+    float velocidade_x;
+    float velocidade_y;
+    int tipo;
 
-    private: 
-        float x, y, width, height, vel_x, vel_y;
-        int tipo;
-        bool alive;
+public:
+    // Construtor 
+    Projetil(float x, float y, float vel_x, float vel_y, int tipo = 0);
+    
+    // Destrutor
+    ~Projetil();
 
-    public:
+    // Getters
+    float getX();
+    float getY();
+    float getVelX();
+    float getVelY();
+    int getTipo();
 
-        Projetil(float startX, float startY, float vX, float vY, int tipo_projetil = 0);
+    // Setters
+    void setX(float novo_x);
+    void setY(float novo_y);
+    void setVelX(float nova_vel_x);
+    void setVelY(float nova_vel_y);
 
-        void update();
-        void kill();
-        bool isAlive() const;
-
-        float getX() const{
-            return x;
-        }
-
-        float getLeft() const {
-            return x;
-        }
-        void setLeft(float val){
-            x = val;
-        }
-        float getRight() const {
-            return x+width;
-        }
-        void setRight(float val){
-            x = val - width;
-        }
-        float getTop() const {
-            return y;
-        }
-        float getBottom() const {
-            return y+height;
-        }
-        void setBottom(float val) {
-            y = val - height;
-        }
-        float getCenterX() const{
-            return x + (width/2.0f);
-        }
+    
+    void update();
 };
 
 #endif

@@ -1,48 +1,38 @@
-#include "projetil.h"
+#include "Projetil.h"
+#include <iostream>
+
 using namespace std;
 
-Projetil::Projetil(float startX, float startY, float vX, float vY, int tipo_projetil){
+  // Construtor
+Projetil::Projetil(float x, float y, float vel_x, float vel_y, int tipo) {
+    this->posicao_x = x;
+    this->posicao_y = y;
+    this->velocidade_x = vel_x;
+    this->velocidade_y = vel_y;
+    this->tipo = tipo;
+    
 
-    this->tipo = tipo_projetil;
-
-    if(this->tipo==0){
-        this->width = 10.0f;
-        this->height = 10.0f;
-    }
-    else if(this->tipo == 1){
-        this->width = 25.0f;
-        this->height = 25.0f;
-    }
-
-    this->x = startX - this->width/2.0f;
-    this->y = startY - this->height/2.0f;
-
-    this->vel_x = vX;
-    this->vel_y = vY;
-
-    this->alive = true;
-
+    cout << "Projétil do tipo " << this->tipo << " CRIADO em (" << x << ", " << y << ")" << endl;
+}
+// Destrutor
+Projetil::~Projetil() {
+    cout << "Projétil DESTRUÍDO" << endl;
 }
 
-void Projetil::kill(){
-    this->alive = false;
-}
+// Getters
+float Projetil::getX() { return posicao_x; }
+float Projetil::getY() { return posicao_y; }
+float Projetil::getVelX() { return velocidade_x; }
+float Projetil::getVelY() { return velocidade_y; }
+int Projetil::getTipo() { return tipo; }
 
-bool Projetil::isAlive() const{
-    return this->alive;
-}
+// Setters
+void Projetil::setX(float novo_x) { posicao_x = novo_x; }
+void Projetil::setY(float novo_y) { posicao_y = novo_y; }
+void Projetil::setVelX(float nova_vel_x) { velocidade_x = nova_vel_x; }
+void Projetil::setVelY(float nova_vel_y) { velocidade_y = nova_vel_y; }
 
-void Projetil::update(){
-
-    if(this->tipo == 1){
-        vel_y += 1.0f;
-    }
-
-    this->x += this->vel_x;
-    this->y += this->vel_y;
-
-    if(x<0.0f || x>15000.0f){
-        this->kill();
-    }
-
+void Projetil::update() {
+    this->posicao_x += this->velocidade_x;
+    this->posicao_y += this->velocidade_y;
 }
