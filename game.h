@@ -2,17 +2,26 @@
 #define GAME_H
 
 #include "player.h"
+#include "Inimigo.h"
 #include <cstdlib>
 
 class Game {
     private:
-        void gerar_itens(Coletavel c, int x, int y);
-    public:
-        static std::vector<Coletavel> Item;
-        // precisa de varias classes
-        
+        void gerar_itens(Coletavel c);
+        std::vector<int> camada0, camada1;
+        Player player;
 
-        void carregar_nivel(Player player, bullet_group, tiros_inimigos, inimigos, coletaveis, subboss);
+    public:
+        static std::vector<std::vector<int>> mapa;
+        static std::vector<Coletavel> Item;
+        
+        Game(Player* player) : camada0({0, 0, 0, 0, 0, 0, 0, 0, 0, 0}), camada1({0, 0, 0, 0, 0, 0, 0, 0, 0, 0}) {
+            mapa = {camada0, camada1};
+            this->player = *player;
+        }
+
+        void carregar_nivel();
+        void acao(char c);
 };
 
 

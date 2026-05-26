@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-Inimigo::Inimigo(float pos_x, float pos_y, int vida, bool voador){
+Inimigo::Inimigo(float pos_x, float pos_y, bool voador, int vida){
     this->posicao_x = pos_x;
     this->posicao_y = pos_y;
     this->vida = vida;

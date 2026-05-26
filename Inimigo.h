@@ -13,7 +13,7 @@ private:
     bool no_chao;
 
     public:
-    Inimigo(float pos_x, float pos_y, int vida = 1, bool voador);
+    Inimigo(float pos_x, float pos_y, bool voador, int vida = 1);
     virtual ~Inimigo();
     //setters
     void setPX(float novo_pos_x);

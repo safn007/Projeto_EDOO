@@ -36,6 +36,8 @@ class Player {
         ~Player() {}
         
         // métodos
+        int get_x() {return this->pos_x;}
+        int get_y() {return this->pos_y;}
         void movimentacao();
         void shoot();
         void update(char key = '0');

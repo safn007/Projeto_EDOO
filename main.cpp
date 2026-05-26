@@ -1,14 +1,15 @@
 #include "player.h"
+#include "game.h"
 using namespace std;
 
 int main() {
+
+    // inicializando objetos
     Player player;
-    player.update();
-    player.update('W');
-    player.update();
-    player.update('D');
-    player.update('D');
-    player.update('W');
-    player.update();
-    player.update();
+    Game game(&player); 
+
+    // ações
+    game.acao('D');
+    game.acao('D');
+    game.acao('D');
 }
